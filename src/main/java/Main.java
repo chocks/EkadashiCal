@@ -4,6 +4,7 @@ import net.fortuna.ical4j.model.ValidationException;
 import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.property.CalScale;
 import net.fortuna.ical4j.model.property.ProdId;
+import net.fortuna.ical4j.model.property.Uid;
 import net.fortuna.ical4j.model.property.Version;
 import net.fortuna.ical4j.util.UidGenerator;
 
@@ -69,9 +70,8 @@ public class Main {
                 VEvent ekadashi = new VEvent(new Date(calendar.getTime()), tokens[3]);
 
                 // Generate a UID for the event.
-                //TODO: Fix this, takes too long to generate a unique ID
-                UidGenerator ug = new UidGenerator(Integer.toString(i));
-                ekadashi.getProperties().add(ug.generateUid());
+                ekadashi.getProperties().add(new Uid(Integer.toString(i)));
+                i++;
                 events.add(ekadashi);
             }
 
